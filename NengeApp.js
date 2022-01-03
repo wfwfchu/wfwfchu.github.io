@@ -1267,7 +1267,7 @@
              $(elm).removeClass("vk-touched");
          } else {
              Module.turboMode = true;
-             _.RunAnimation(60 * 8);
+             _.RunAnimation(60 * 10);
              $(elm).addClass("vk-touched");
          }
      },
