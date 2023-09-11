@@ -1312,9 +1312,8 @@
             speed = 1;
             speedInput.val("1");
         }
-        // You can modify this part to set the desired animation speed based on the speedvalue
-        // For example, if you want to make the animation 2x faster, use: _.RunAnimation(60 * 20 / speed);
-        _.RunAnimation(60 * 20 / speed);
+        // Update the animation speed based on speedvalue
+        _.RunAnimation(60 * speed);
         $(elm).addClass("vk-touched");
     }
 },
