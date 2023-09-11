@@ -678,30 +678,21 @@
  
      },
 SetGameSpeed: function () {
-    var targetSelector = $(this).data("target");
-    var speedInput = $(targetSelector + " input[data-index='speedvalue']");
-
-    // Get the value from data-index attribute and set it in the input box
+    var speedInput = $("#" + $(this).data("target") + " input[data-index='speedvalue']");
+    
     var newValue = parseFloat($(this).data("index"));
-    if (!isNaN(newValue)) {
-        speedInput.val(newValue);
-    } else {
-        alert("Invalid value provided in data-index attribute.");
+    if (isNaN(newValue) || newValue <= 0) {
+        alert("Invalid speed value provided.");
+        newValue = 1;
     }
+    speedInput.val(newValue);
 
-    // Now, you can also set the game speed based on the new value
-    var speed = parseFloat(speedInput.val());
-
-    if (isNaN(speed) || speed <= 0) {
-        alert("Please enter a valid positive number for the speed.");
-        speed = 1;
-        speedInput.val("1");
-    } else {
-        // Set the game speed or perform other actions here
-        // Module.gameSpeed = speed;
-        // localStorage.setItem("GameSpeed", speed);
-    }
+    // Assuming the speed needs to be set or saved when this function is called
+    // Uncomment and adjust these lines as per your application's requirements:
+    // Module.gameSpeed = newValue;
+    // localStorage.setItem("GameSpeed", newValue);
 },
+
      GetGamePadMap: function () {
          var _ = this,
              Module = _.Module,
