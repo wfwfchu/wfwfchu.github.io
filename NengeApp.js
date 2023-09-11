@@ -663,28 +663,20 @@
          localStorage.setItem("GamePadMap2", JSON.stringify(_.EventGamePadMap));
  
      },
-     SetGameSpeed: function () {
-    var _ = this,
-        Module = _.Module;
-
-    // Retrieve the speedvalue input element
+SetGameSpeed: function () {
+    var { Module } = this;
     var speedInput = $("#GBA-Speed input[data-index='speedvalue']");
     
-    // Parse the speed value
     var speed = parseFloat(speedInput.val());
 
-    // Check if the parsed value is a valid number and greater than zero
     if (isNaN(speed) || speed <= 0) {
+        alert("Please enter a valid positive number for the speed.");
         speed = 1;
         speedInput.val("1");
+    } else {
+        Module.gameSpeed = speed;
+        localStorage.setItem("GameSpeed", speed);
     }
-
-    // Store the speed in a property of the Module or perform any other necessary actions
-    // Replace 'Module.gameSpeed' with the actual property where you want to store the speed
-    Module.gameSpeed = speed;
-
-    // Optionally, save the speed to local storage
-    localStorage.setItem("GameSpeed", speed);
 },
      GetGamePadMap: function () {
          var _ = this,
