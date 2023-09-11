@@ -661,6 +661,29 @@
          localStorage.setItem("GamePadMap2", JSON.stringify(_.EventGamePadMap));
  
      },
+     SetGameSpeed: function () {
+    var _ = this,
+        Module = _.Module;
+
+    // Retrieve the speedvalue input element
+    var speedInput = $("#GBA-Speed input[data-index='speedvalue']");
+    
+    // Parse the speed value
+    var speed = parseFloat(speedInput.val());
+
+    // Check if the parsed value is a valid number and greater than zero
+    if (isNaN(speed) || speed <= 0) {
+        speed = 1;
+        speedInput.val("1");
+    }
+
+    // Store the speed in a property of the Module or perform any other necessary actions
+    // Replace 'Module.gameSpeed' with the actual property where you want to store the speed
+    Module.gameSpeed = speed;
+
+    // Optionally, save the speed to local storage
+    localStorage.setItem("GameSpeed", speed);
+},
      GetGamePadMap: function () {
          var _ = this,
              Module = _.Module,
@@ -798,6 +821,9 @@
              case "GamePad":
                  _.showGamePadMenu();
                  break;
+                case "Speed":
+                 _.showGameSpeedMenu();
+                 break;
              case "OpenMenu":
                  _.showGBAMenu();
                  break;
@@ -918,6 +944,13 @@
              Module = _.Module;
          if (typeof Module.isRunning != "undefined") Module.isRunning = false;
          $(_.GAMEPAD).show();
+ 
+     },
+       showGameSpeedMenu: function () {
+         var _ = this,
+             Module = _.Module;
+         if (typeof Module.isRunning != "undefined") Module.isRunning = false;
+         $(_.Speed).show();
  
      },
      QcloudUrl: "", //"https://gbazip-1251354987.cos.ap-guangzhou.myqcloud.com/",//騰訊雲對象儲存
@@ -1258,19 +1291,31 @@
      },
      EventMouseDown: false,
      OpenTurboMode: function (elm) {
-         var _ = this,
-             Module = _.Module,
-             elm = elm ? elm : $(".vk[data-k=turbo]");
-         if (Module.turboMode) {
-             Module.turboMode = false;
-             _.RunAnimation();
-             $(elm).removeClass("vk-touched");
-         } else {
-             Module.turboMode = true;
-             _.RunAnimation(60 * 20);
-             $(elm).addClass("vk-touched");
-         }
-     },
+    var _ = this,
+        Module = _.Module,
+        elm = elm ? elm : $(".vk[data-k=turbo]"),
+        speedInput = $("#GBA-Speed input[data-index='speedvalue']");
+
+    if (Module.turboMode) {
+        Module.turboMode = false;
+        _.RunAnimation();
+        $(elm).removeClass("vk-touched");
+        // Reset the speed to 1 when turbo mode is turned off
+        speedInput.val("1");
+    } else {
+        Module.turboMode = true;
+        var speed = parseFloat(speedInput.val());
+        // Check if the value in the input is a valid number, and set a default value of 1 if not
+        if (isNaN(speed) || speed <= 0) {
+            speed = 1;
+            speedInput.val("1");
+        }
+        // You can modify this part to set the desired animation speed based on the speedvalue
+        // For example, if you want to make the animation 2x faster, use: _.RunAnimation(60 * 20 / speed);
+        _.RunAnimation(60 * 20 / speed);
+        $(elm).addClass("vk-touched");
+    }
+},
      SetKeyState: function (e, k, type) {
          var _ = this,
              Module = _.Module;
