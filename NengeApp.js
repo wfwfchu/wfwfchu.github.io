@@ -664,9 +664,18 @@
  
      },
 SetGameSpeed: function () {
-    var { Module } = this;
-    var speedInput = $("#GBA-Speed input[data-index='speedvalue']");
-    
+    var targetSelector = $(this).data("target");
+    var speedInput = $(targetSelector + " input[data-index='speedvalue']");
+
+    // Get the value from data-index attribute and set it in the input box
+    var newValue = parseFloat($(this).data("index"));
+    if (!isNaN(newValue)) {
+        speedInput.val(newValue);
+    } else {
+        alert("Invalid value provided in data-index attribute.");
+    }
+
+    // Now, you can also set the game speed based on the new value
     var speed = parseFloat(speedInput.val());
 
     if (isNaN(speed) || speed <= 0) {
@@ -674,8 +683,9 @@ SetGameSpeed: function () {
         speed = 1;
         speedInput.val("1");
     } else {
-        Module.gameSpeed = speed;
-        localStorage.setItem("GameSpeed", speed);
+        // Set the game speed or perform other actions here
+        // Module.gameSpeed = speed;
+        // localStorage.setItem("GameSpeed", speed);
     }
 },
      GetGamePadMap: function () {
