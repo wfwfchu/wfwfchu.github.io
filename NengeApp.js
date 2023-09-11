@@ -254,6 +254,7 @@
      CANVAS: "#GBA-canvas ",
      GBABTN: "#GBA-Btn ",
      GAMEMENU: "#GBA-GAMEMenu ",
+     Speed: "#GBA-Speed ",
      GBAMENU: "#GBA-Menu ",
      GBAMSG: "#GBA-Msg ",
      LAYERBTN: ["a", "b", "select", "start", "right", "left", "up", "down", "r", "l", "menu", "turbo", "ul", "ur", "dl", "dr"],
