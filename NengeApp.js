@@ -515,6 +515,7 @@
                  SkinClass + _.GBAMENU + ',' +
                  SkinClass + _.GAMEPAD + ',' +
                  SkinClass + _.GAMEMENU + ',.testDiv{position: absolute;background: rgb(0,0,0,0.6);z-index: 10;width:' + MaxW + 'px;height:' + (_Type == "portrait" ? MaxH : Height) + 'px;left:' + _Left + 'px;font-size:0.5rem;}' +
+                 SkinClass + _.Speed + ',.testDiv{position: absolute;background: rgb(0,0,0,0.6);z-index: 10;width:' + MaxW + 'px;height:' + (_Type == "portrait" ? MaxH : Height) + 'px;left:' + _Left + 'px;font-size:0.5rem;}' +
                  SkinClass + _.GBAMENU + '#game-files,' +
                  SkinClass + _.GBAMENU + '#game-zip{padding:5px;overflow:scroll;height:' + (h / 2.5) + 'px;width:100%;}' +
                  SkinClass + _.GBAMENU + '#game-files p{margin:3px 0px;padding:2px;text-align:left;}' +
