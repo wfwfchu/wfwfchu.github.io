@@ -231,6 +231,20 @@
                          passive: false
                      })
              });
+         $(document).ready(function() {
+    // Listen for changes on the speed input box
+    $("#GBA-Speed input[data-index='speedvalue']").on("change", function() {
+        var speed = parseFloat($(this).val());
+        if (isNaN(speed) || speed <= 0) {
+            speed = 1;
+            $(this).val("1");
+        }
+        if (Module.turboMode) {  // Assuming 'Module' is accessible in this context
+            _.RunAnimation(60 * speed);  // Assuming '_' is accessible in this context
+        }
+    });
+});
+
          $(".inputFile").on("change", function (e) {
              return _.UploadFile(e, this);
          });
