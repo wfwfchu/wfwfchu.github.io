@@ -105,9 +105,10 @@
 	<p></p>
 	<p></p>
 	<p></p>
-	<p><button data-action="CloseMenu" data-target="#GBA-Speed">關閉菜單</button>
+	<p>
 	   <button data-action="SetGameSpeed" data-target="#GBA-Speed">保存設置SaveSetting</button></p>
- 	<p >速度:<input data-index="speedvalue" type="number" size="2" value="3"></p>
+	    <button id="turboButton" onclick="OpenTurboMode()">Save speed</button>
+ 	<p >速度:<input type="text" id="speedValueInput" data-index="speedvalue" value="1"></p>
   	</div>
 	  <div class="game-data">
 	  	<div id="game-files"></div>
